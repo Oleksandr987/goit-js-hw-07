@@ -1,25 +1,18 @@
 /* eslint-disable linebreak-style */
 const counterValue = {
-  btns: document.querySelector('#counter'),
+  btnIn: document.querySelector('button[data-action="increment"]'),
+  btnDec: document.querySelector('button[data-action="decrement"]'),
   spn: document.querySelector('#value'),
 };
+let counter = 0;
 
-const state = {
-  counter: 0,
-  increment() {
-    state.counter += 1;
-    counterValue.spn.textContent = state.counter;
-  },
-  decrement() {
-    state.counter -= 1;
-    counterValue.spn.textContent = state.counter;
-  },
-};
-
-function handClick({ target }) {
-  state[target.dataset.action]();
-  counterValue.spn.textContent = state.counter;
+function increment() {
+  counter += 1;
+  counterValue.spn.textContent = counter;
 }
-
-
-counterValue.btns.addEventListener('click', handClick);
+function decrement() {
+  counter -= 1;
+  counterValue.spn.textContent = counter;
+}
+counterValue.btnDec.addEventListener('click', decrement);
+counterValue.btnIn.addEventListener('click', increment);
